@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
-
 {% block body %}
-
-
+<div class="row">
+    <h2 class="text-center mt-5">Bataille Navale Online</h2>
+    <input type="hidden" id="token" value="{{ randomString }}">
+    <div class="linkUrlPlay">https://127.0.0.1:8000/game/{{ randomString }}</div>
+    <div class="col-12 mt-5">
+        <button class="btn btn-success m-auto d-block btnPlay">JOUER</button>
+    </div>
+</div>
 {% endblock %}
