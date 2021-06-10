@@ -53,6 +53,17 @@ class Game
      */
     private $room;
 
+    public function __construct($player, $boat, $length, $position, $rotation, $touch, $room)
+    {
+        $this->player = $player;
+        $this->boat = $boat;
+        $this->length = $length;
+        $this->position = $position;
+        $this->rotation = $rotation;
+        $this->touch = $touch;
+        $this->room = $room;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

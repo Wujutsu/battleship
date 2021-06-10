@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\Entity\Room;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -38,9 +39,14 @@ class HomeController extends AbstractController
             $room->setIp($request->getClientIp());
             $room->setIpBis('');
             $room->setCreatedAt(new \DateTime("now"));
-            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($room);
+            $entityManager->flush();
+
+            //Insert boat
+            $player1Boat1 = new Game(0, 1, 2, 'A1', 0, '', $room);           
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($player1Boat1);
             $entityManager->flush();
 
             return new JsonResponse($token);
@@ -48,7 +54,6 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
     }
-
 
     /**
      * Function to generate an aleatoire String

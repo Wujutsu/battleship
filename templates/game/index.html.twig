@@ -1,5 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
+    <div class="row mt-5">
 
+        <div class="col-lg-6">
+            <div class="battleship">
+                {% for i in 1..100 %}
+                    <div class="box"></div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
 {% endblock %}

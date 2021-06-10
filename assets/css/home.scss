@@ -2,7 +2,7 @@
     margin: auto;
     margin-top: 15px;
     height: 50px;
-    width: 480px;
+    width: 490px;
     background: white;
     color: black;
     font-weight: 600;
@@ -13,6 +13,8 @@
 }
 
 .btnPlay {
+    display: block;
+    margin: auto;
     width:200px;    
-    height:100px;    
+    height:70px;    
 }

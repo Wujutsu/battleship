@@ -1,0 +1,17 @@
+.battleship {
+    margin: auto;
+    margin-top:20px;
+    width: 395px;
+    height: 396px;
+    background: rgba($color: white, $alpha: 0.7);
+    cursor: pointer;
+}
+.box {
+    display: inline-block;
+    margin-bottom: -6px;
+    margin-right: -5px;
+    border-right: 1px solid rgb(128, 128, 128);
+    border-bottom: 1px solid rgb(128, 128, 128);
+    width: 40px;
+    height: 40px;
+ }
