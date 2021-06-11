@@ -25,6 +25,7 @@ $(".cellule").click(function (e) {
         },
         success: function () {
             location.reload();
+            //todo function to just reload the div mapEnnemy
         }
     });
 });
