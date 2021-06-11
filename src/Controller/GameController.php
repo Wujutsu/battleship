@@ -96,19 +96,59 @@ class GameController extends AbstractController
                 //Show all cellule boat enemy
                 $game = $this->getDoctrine()->getRepository(Game::class)->findBy(['room' => $room]);
                 $player == 0 ? $boatsCelluleEnemy = GameController::creatingViewCelluleOfMapPlayer($game, 1) : $boatsCelluleEnemy = GameController::creatingViewCelluleOfMapPlayer($game, 0);
+                
                 //If cellule touch are a boat
-                //if (isset($boatsCelluleEnemy[$cellule]))
-                    
+                $tabCelluleBesideBoat = array();
+                if (isset($boatsCelluleEnemy[$cellule])) {
+                    if ($boatsCelluleEnemy[$cellule] == 0) {
+                        if (!isset($boatsCelluleEnemy[$cellule - 1])) {
+                            $tabCelluleBesideBoat[] = $cellule - 1;
+                            $tabCelluleBesideBoat[] = $cellule - 11;
+                            $tabCelluleBesideBoat[] = $cellule + 9;
+                        }
+                        if (!isset($boatsCelluleEnemy[$cellule + 1])) {
+                            $tabCelluleBesideBoat[] = $cellule + 1;
+                            $tabCelluleBesideBoat[] = $cellule + 11;
+                            $tabCelluleBesideBoat[] = $cellule - 9;
+                        }
+                        if (!isset($boatsCelluleEnemy[$cellule - 10]))
+                            $tabCelluleBesideBoat[] = $cellule - 10;
+                        if (!isset($boatsCelluleEnemy[$cellule + 10]))
+                            $tabCelluleBesideBoat[] = $cellule + 10;
 
-                //Update cellule touch
+                    } else {
+                        if (!isset($boatsCelluleEnemy[$cellule - 1]))
+                            $tabCelluleBesideBoat[] = $cellule - 1;
+                        if (!isset($boatsCelluleEnemy[$cellule + 1]))
+                            $tabCelluleBesideBoat[] = $cellule + 1;
+                        if (!isset($boatsCelluleEnemy[$cellule - 10])) {
+                            $tabCelluleBesideBoat[] = $cellule - 10;
+                            $tabCelluleBesideBoat[] = $cellule - 11;
+                            $tabCelluleBesideBoat[] = $cellule - 9;
+                        }
+                        if (!isset($boatsCelluleEnemy[$cellule + 10])) {
+                            $tabCelluleBesideBoat[] = $cellule + 10;
+                            $tabCelluleBesideBoat[] = $cellule + 11;
+                            $tabCelluleBesideBoat[] = $cellule + 9;
+                        }
+                    }
+                }
+
+                //Update cellule(s) touch
                 $entityManager = $this->getDoctrine()->getManager();
                 $roomUpdate = $entityManager->getRepository(Room::class)->find($room->getId());
                 
                 if ($roomUpdate) {
                     if ($player == 0) {
                         $roomUpdate->addCellulePlayerOne($cellule);
+                        foreach ($tabCelluleBesideBoat as $var) {
+                            $roomUpdate->addCellulePlayerOne($var);
+                        }
                     } else {
                         $roomUpdate->addCellulePlayerTwo($cellule);
+                        foreach ($tabCelluleBesideBoat as $var) {
+                            $roomUpdate->addCellulePlayerTwo($var);
+                        }
                     }
                     $entityManager->flush();
                 }
@@ -133,7 +173,7 @@ class GameController extends AbstractController
                 $posY = $position[1];
     
                 for ($i = 0; $i < $game->getLength(); $i++) {
-                    $game->getRotation() == 0 ? $celluleBoat[($posX + $i) + (($posY - 1) * 10)] = true : $celluleBoat[$posX + ((($posY + $i) - 1) * 10)] = true;
+                    $game->getRotation() == 0 ? $celluleBoat[($posX + $i) + (($posY - 1) * 10)] = $game->getRotation() : $celluleBoat[$posX + ((($posY + $i) - 1) * 10)] = $game->getRotation();
                 }
             }
         }
