@@ -33,7 +33,7 @@ class Game
     private $length;
 
     /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=5)
      */
     private $position;
 

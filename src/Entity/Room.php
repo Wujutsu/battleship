@@ -44,6 +44,16 @@ class Room
      */
     private $created_at;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $cellule_player_one;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $cellule_player_two;
+
     public function __construct()
     {
         $this->games = new ArrayCollection();
@@ -128,6 +138,44 @@ class Room
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getCellulePlayerOne(): ?string
+    {
+        return $this->cellule_player_one;
+    }
+
+    public function setCellulePlayerOne(string $cellule_player_one): self
+    {
+        $this->cellule_player_one = $cellule_player_one;
+
+        return $this;
+    }
+
+    public function addCellulePlayerOne(string $cellule_player_one): self
+    {
+        $this->cellule_player_one .= $cellule_player_one.';';
+
+        return $this;
+    }
+
+    public function getCellulePlayerTwo(): ?string
+    {
+        return $this->cellule_player_two;
+    }
+
+    public function setCellulePlayerTwo(string $cellule_player_two): self
+    {
+        $this->cellule_player_two = $cellule_player_two;
+
+        return $this;
+    }
+
+    public function addCellulePlayerTwo(string $cellule_player_two): self
+    {
+        $this->cellule_player_two .= $cellule_player_two.';';
 
         return $this;
     }

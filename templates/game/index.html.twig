@@ -1,17 +1,67 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container">
-    <div class="row mt-5">
 
-        <div class="col-lg-6">
-            <div class="battleship">
-                {% for i in 1..100 %}
-                    <div class="box"></div>
-                {% endfor %}
+<input type="hidden" id="token" value="{{ room.Token }}">
+<input type="hidden" id="player" value="{{ player }}">
+<input type="hidden" id="startGame" value="{% if room.ipBis != '' %}true{% else %}false{% endif %}">
+
+<div class="container">
+    {# PlayerOne wait the second player to start the game #}
+    {% if room.ipBis == '' %}
+        <div class="blockSpinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only"></span>
             </div>
         </div>
+        <div class="text-center mt-3 h4">En attente d'un adversaire...</div>
 
-    </div>
+    {% else %}
+
+        {# When the game start #}
+        <div class="row mt-5">
+            
+            <div class="col-lg-6">
+                <div class="text-center h3">Vos navires</div>
+                <div class="battleship">
+                    {% for i in 1..100 %}
+                        {% if player == 0 %}
+                            {% if boatsPlayer[i] is defined %}
+                                <div class="boxBoat"></div>
+                            {% else %}
+                                <div class="box"></div>
+                            {% endif %}
+                        {% else %}
+                            {% if boatsPlayer[i] is defined %}
+                                <div class="boxBoat"></div>
+                            {% else %}
+                                <div class="box"></div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-lg-6" id="mapEnnemy">
+                <div class="text-center h3">Ennemi</div>
+                <div class="battleshipEnemy">
+                    {% for i in 1..100 %}
+                        {% if celluleTouch[i] is defined %}
+                            {% if boatsPlayerEnemy[i] is defined %}
+                                <div class="boxBoat cellule" id="cellule{{ i }}" data-cellule="{{ i }}"></div>
+                            {% else %}
+                                <div class="boxFail cellule" id="cellule{{ i }}" data-cellule="{{ i }}"></div>
+                            {% endif %}
+                        {% else %}
+                            <div class="box cellule" id="cellule{{ i }}" data-cellule="{{ i }}"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
 </div>
+
+
 {% endblock %}

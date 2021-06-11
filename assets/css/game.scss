@@ -1,17 +1,76 @@
+.blockSpinner {
+    margin: auto;
+    margin-top: 18%;
+    width: fit-content;
+    .spinner-border{
+        font-size: 50px;
+        width: 150px;
+        height: 150px;
+    }
+}
+
 .battleship {
     margin: auto;
     margin-top:20px;
-    width: 395px;
-    height: 396px;
-    background: rgba($color: white, $alpha: 0.7);
+    width: 394px;
+    height: 400px;
     cursor: pointer;
+    background: rgba($color: white, $alpha: 0.8);
+    .box {
+        display: inline-block;
+        margin-bottom: -6px;
+        margin-right: -5px;
+        border-right: 1px solid rgb(128, 128, 128);
+        border-bottom: 1px solid rgb(128, 128, 128);
+        width: 40px;
+        height: 40px;
+    }
+    .boxBoat {
+        display: inline-block;
+        margin-bottom: -6px;
+        margin-right: -5px;
+        border: 1px solid rgb(131, 131, 197);
+        width: 40px;
+        height: 40px;
+        background: rgb(131, 131, 197);
+    }
 }
-.box {
-    display: inline-block;
-    margin-bottom: -6px;
-    margin-right: -5px;
-    border-right: 1px solid rgb(128, 128, 128);
-    border-bottom: 1px solid rgb(128, 128, 128);
-    width: 40px;
-    height: 40px;
- }
+
+.battleshipEnemy {
+    margin: auto;
+    margin-top:20px;
+    width: 394px;
+    height: 400px;
+    cursor: pointer;
+    background: rgba($color: white, $alpha: 0.6);
+    .box {
+        display: inline-block;
+        margin-bottom: -6px;
+        margin-right: -5px;
+        border-right: 1px solid rgb(128, 128, 128);
+        border-bottom: 1px solid rgb(128, 128, 128);
+        width: 40px;
+        height: 40px;
+    }
+    .box:hover {
+        background: rgba($color: black, $alpha: 0.1);
+    }
+    .boxBoat {
+        display: inline-block;
+        margin-bottom: -6px;
+        margin-right: -5px;
+        border: 1px solid rgb(206, 60, 60);
+        width: 40px;
+        height: 40px;
+        background: rgb(206, 60, 60);
+    }
+    .boxFail {
+        display: inline-block;
+        margin-bottom: -6px;
+        margin-right: -5px;
+        border: 1px solid rgb(119, 119, 119);
+        width: 40px;
+        height: 40px;
+        background: rgb(119, 119, 119);
+    }
+}
